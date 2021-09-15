@@ -1,5 +1,11 @@
 import * as React from "react";
-import { Marker, LayerGroup, useMapEvent } from "react-leaflet";
+import {
+  Marker,
+  LayerGroup,
+  useMapEvent,
+  MapContainer,
+  Popup
+} from "react-leaflet";
 import { Icon } from "leaflet";
 import pizzaPng from "./pizza.png";
 var pizzaIcon = new Icon({
@@ -26,7 +32,11 @@ export const PizzaMarkers = (props) => {
             feature.geometry.coordinates[1],
             feature.geometry.coordinates[0]
           ]}
-        />
+        >
+          <Popup key={Math.random()} maxHeight={100}>
+            This would be a good place for a menu component
+          </Popup>
+        </Marker>
       ))}
     </LayerGroup>
   );
