@@ -1,6 +1,8 @@
 import * as React from "react";
 import "./styles.css";
 import * as pizzageojson from "./pizzaGeoJson.json";
+import * as favpizzaspots from "./favpizzaspots.json";
+
 import { PizzaMarkers } from "./PizzaMarkers";
 
 //import "leaflet/dist/leaflet.css";
@@ -47,29 +49,7 @@ export default function App() {
             <LayersControl.Overlay checked={false} name="custom geojson">
               <GeoJSON
                 key={Math.random()}
-                data={
-                  {
-                    type: "FeatureCollection",
-                    features: [
-                      {
-                        type: "Feature",
-                        properties: {},
-                        geometry: {
-                          type: "Polygon",
-                          coordinates: [
-                            [
-                              [-120.65760612487792, 50.95588567468203],
-                              [-120.61975479125977, 50.95588567468203],
-                              [-120.61975479125977, 50.96502198849013],
-                              [-120.65760612487792, 50.96502198849013],
-                              [-120.65760612487792, 50.95588567468203]
-                            ]
-                          ]
-                        }
-                      }
-                    ]
-                  } as GeoJsonObject
-                }
+                data={favpizzaspots as GeoJsonObject}
               />
             </LayersControl.Overlay>
             <LayersControl.Overlay
