@@ -1,5 +1,8 @@
 import * as React from "react";
 import "./styles.css";
+import * as pizzageojson from "./pizzaGeoJson.json";
+import { PizzaMarkers } from "./PizzaMarkers";
+
 //import "leaflet/dist/leaflet.css";
 import {
   LayersControl,
@@ -14,7 +17,7 @@ export default function App() {
   return (
     <div className="App">
       <div>
-        <MapContainer center={center} zoom={15} minZoom={6} id="mapid">
+        <MapContainer center={center} zoom={15} minZoom={0} id="mapid">
           <LayersControl position={"bottomright"}>
             <LayersControl.BaseLayer checked name="Base Layer">
               <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
@@ -41,7 +44,7 @@ export default function App() {
                 layers={"WHSE_ADMIN_BOUNDARIES.CLAB_NATIONAL_PARKS"}
               />
             </LayersControl.Overlay>
-            <LayersControl.Overlay checked name="Fed Parks">
+            <LayersControl.Overlay checked name="custom geojson">
               <GeoJSON
                 key={Math.random()}
                 data={
@@ -68,6 +71,9 @@ export default function App() {
                   } as GeoJsonObject
                 }
               />
+            </LayersControl.Overlay>
+            <LayersControl.Overlay checked name="Licensed Pizza Establishments">
+              <PizzaMarkers inputGeoJSON={pizzageojson} />
             </LayersControl.Overlay>
           </LayersControl>
         </MapContainer>
