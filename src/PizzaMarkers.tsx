@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Marker, LayerGroup } from "react-leaflet";
+import { Marker, LayerGroup, useMapEvent } from "react-leaflet";
 import { Icon } from "leaflet";
 import pizzaPng from "./pizza.png";
 var pizzaIcon = new Icon({
@@ -10,6 +10,12 @@ var pizzaIcon = new Icon({
 });
 
 export const PizzaMarkers = (props) => {
+  useMapEvent("overlayadd", (event) => {
+    console.dir(event);
+    if (event.name === "Licensed Pizza Establishments") {
+      alert("I hope you like pizza and liquor");
+    }
+  });
   return (
     <LayerGroup>
       {props.inputGeoJSON.features.map((feature) => (

@@ -22,7 +22,7 @@ export default function App() {
             <LayersControl.BaseLayer checked name="Base Layer">
               <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
             </LayersControl.BaseLayer>
-            <LayersControl.Overlay checked name="Regional Districts">
+            <LayersControl.Overlay checked={false} name="Regional Districts">
               <WMSTileLayer
                 key={Math.random()}
                 transparent={true}
@@ -34,7 +34,7 @@ export default function App() {
                 }
               />
             </LayersControl.Overlay>
-            <LayersControl.Overlay checked name="Fed Parks">
+            <LayersControl.Overlay checked={false} name="Fed Parks">
               <WMSTileLayer
                 key={Math.random()}
                 transparent={true}
@@ -44,7 +44,7 @@ export default function App() {
                 layers={"WHSE_ADMIN_BOUNDARIES.CLAB_NATIONAL_PARKS"}
               />
             </LayersControl.Overlay>
-            <LayersControl.Overlay checked name="custom geojson">
+            <LayersControl.Overlay checked={false} name="custom geojson">
               <GeoJSON
                 key={Math.random()}
                 data={
@@ -72,7 +72,10 @@ export default function App() {
                 }
               />
             </LayersControl.Overlay>
-            <LayersControl.Overlay checked name="Licensed Pizza Establishments">
+            <LayersControl.Overlay
+              checked={false}
+              name="Licensed Pizza Establishments"
+            >
               <PizzaMarkers inputGeoJSON={pizzageojson} />
             </LayersControl.Overlay>
           </LayersControl>
