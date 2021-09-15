@@ -5,8 +5,10 @@ import {
   LayersControl,
   MapContainer,
   TileLayer,
-  WMSTileLayer
+  WMSTileLayer,
+  GeoJSON
 } from "react-leaflet";
+import { GeoJsonObject } from "geojson";
 export default function App() {
   const center: [number, number] = [51.1664, -120.906];
   return (
@@ -37,6 +39,34 @@ export default function App() {
                 format={"image/png"}
                 url="http://openmaps.gov.bc.ca/geo/ows"
                 layers={"WHSE_ADMIN_BOUNDARIES.CLAB_NATIONAL_PARKS"}
+              />
+            </LayersControl.Overlay>
+            <LayersControl.Overlay checked name="Fed Parks">
+              <GeoJSON
+                key={Math.random()}
+                data={
+                  {
+                    type: "FeatureCollection",
+                    features: [
+                      {
+                        type: "Feature",
+                        properties: {},
+                        geometry: {
+                          type: "Polygon",
+                          coordinates: [
+                            [
+                              [-120.65760612487792, 50.95588567468203],
+                              [-120.61975479125977, 50.95588567468203],
+                              [-120.61975479125977, 50.96502198849013],
+                              [-120.65760612487792, 50.96502198849013],
+                              [-120.65760612487792, 50.95588567468203]
+                            ]
+                          ]
+                        }
+                      }
+                    ]
+                  } as GeoJsonObject
+                }
               />
             </LayersControl.Overlay>
           </LayersControl>
