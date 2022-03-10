@@ -1,13 +1,7 @@
-import * as React from "react";
-import {
-  Marker,
-  LayerGroup,
-  useMapEvent,
-  MapContainer,
-  Popup
-} from "react-leaflet";
-import { Icon } from "leaflet";
-import pizzaPng from "./pizza.png";
+import * as React from 'react';
+import { Marker, LayerGroup, useMapEvent, MapContainer, Popup } from 'react-leaflet';
+import { Icon } from 'leaflet';
+import pizzaPng from './pizza.png';
 var pizzaIcon = new Icon({
   iconUrl: pizzaPng,
   iconSize: [50, 50], // size of the icon
@@ -16,28 +10,28 @@ var pizzaIcon = new Icon({
 });
 
 export const PizzaMarkers = (props) => {
-  useMapEvent("overlayadd", (event) => {
+  useMapEvent('overlayadd', (event) => {
     console.dir(event);
-    if (event.name === "Licensed Pizza Establishments") {
-      alert("I hope you like pizza and liquor");
+    if (event.name === 'Licensed Pizza Establishments') {
+      alert('I hope you like pizza and liquor');
     }
   });
   return (
     <LayerGroup>
-      {props.inputGeoJSON.features.map((feature) => (
-        <Marker
-          key={Math.random()}
-          icon={pizzaIcon}
-          position={[
-            feature.geometry.coordinates[1],
-            feature.geometry.coordinates[0]
-          ]}
-        >
-          <Popup key={Math.random()} maxHeight={100}>
-            This would be a good place for a menu component
-          </Popup>
-        </Marker>
-      ))}
+      {props.innPutGeoJSON && props.inputGeoJSON.length ? (
+        props.inputGeoJSON.features.map((feature) => (
+          <Marker
+            key={Math.random()}
+            icon={pizzaIcon}
+            position={[feature.geometry.coordinates[1], feature.geometry.coordinates[0]]}>
+            <Popup key={Math.random()} maxHeight={100}>
+              This would be a good place for a menu component
+            </Popup>
+          </Marker>
+        ))
+      ) : (
+        <></>
+      )}
     </LayerGroup>
   );
 };
